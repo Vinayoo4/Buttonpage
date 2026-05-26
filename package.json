@@ -14,7 +14,10 @@
     "lucide-react": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-intersection-observer": "^9.5.2"
+    "react-intersection-observer": "^9.5.2",
+    "react-router-dom": "^7.15.1",
+    "typescript-eslint": "^8.60.0",
+    "vite-plugin-pwa": "^1.3.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
