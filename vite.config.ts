@@ -8,23 +8,41 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
+      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg', 'icons/icon-192x192.png', 'icons/icon-512x512.png', 'offline.html'],
       manifest: {
-        name: 'Mindfulness Micro Course',
-        short_name: 'Mindfulness',
-        description: 'Mindfulness Micro Course Series',
-        theme_color: '#ffffff',
+        name: "Mindfulness Micro Course Series",
+        short_name: "MindCourse",
+        theme_color: "#4f46e5",
+        background_color: "#f9fafb",
+        display: "standalone",
+        start_url: "/",
         icons: [
           {
-            src: 'pwa-192x192.png',
+            src: 'icons/icon-192x192.png',
             sizes: '192x192',
             type: 'image/png'
           },
           {
-            src: 'pwa-512x512.png',
+            src: 'icons/icon-512x512.png',
             sizes: '512x512',
             type: 'image/png'
           }
+        ]
+      },
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
+        navigateFallback: '/offline.html',
+        runtimeCaching: [
+          {
+            urlPattern: ({ request }) => request.mode === 'navigate',
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'pages',
+              expiration: {
+                maxEntries: 50,
+              },
+            },
+          },
         ]
       }
     })
